@@ -2,6 +2,8 @@
 
 An app for tracking your to-do's! 
 
-## Objectives
+## Description
 
 This project is for practicing coding in flutter.
+
+It has edit, delete, and add functionalities.
