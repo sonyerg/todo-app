@@ -1,4 +1,4 @@
-# To-Do App
+# ToDo-App
 
 An app for tracking your to-do's! 
 
