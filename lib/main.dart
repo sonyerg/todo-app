@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:todo_app/nav_drawer.dart';
 
 import 'todo.dart';
 import 'todo_item.dart';
@@ -23,7 +24,7 @@ class MyApp extends StatelessWidget {
         ),
         scaffoldBackgroundColor: const Color.fromARGB(255, 236, 236, 236),
       ),
-      home: MyHomePage(),
+      home: const MyHomePage(),
     );
   }
 }
@@ -72,9 +73,10 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
     );
     return Scaffold(
-      appBar: AppBar(
-        leading: const Icon(Icons.menu),
+      drawer: const Drawer(
+        child: NavDrawer(),
       ),
+      appBar: AppBar(),
       body: Column(
         // crossAxisAlignment: CrossAxisAlignment.start,
         // mainAxisAlignment: MainAxisAlignment.start,
@@ -98,15 +100,18 @@ class _MyHomePageState extends State<MyHomePage> {
             child: ListView(
               physics: const AlwaysScrollableScrollPhysics(),
               children: [
-                const SizedBox(height: 20),
-                const Text(
-                  '   Todo\'s',
-                  style: TextStyle(
-                    fontSize: 30,
-                    fontWeight: FontWeight.bold,
+                const SizedBox(height: 8),
+                const Padding(
+                  padding: EdgeInsets.only(left: 16),
+                  child: Text(
+                    'Todo\'s',
+                    style: TextStyle(
+                      fontSize: 30,
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
                 ),
-                const SizedBox(height: 20),
+                const SizedBox(height: 16),
                 for (ToDo todoo in todosList)
                   TodoItem(
                     todo: todoo,

@@ -8,7 +8,7 @@ class TodoItem extends StatelessWidget {
   final onEditItem;
   final addToDo;
 
-  const TodoItem({
+  TodoItem({
     super.key,
     required this.todo,
     this.onToDoChanged,
@@ -17,11 +17,50 @@ class TodoItem extends StatelessWidget {
     this.addToDo,
   });
 
+  final GlobalKey actionKey = GlobalKey();
+
+  void showPopupMenu(BuildContext context) {
+    final RenderBox renderBox =
+        actionKey.currentContext!.findRenderObject()! as RenderBox;
+    final offset = renderBox.localToGlobal(Offset.zero);
+    final size = renderBox.size;
+
+    showMenu<String>(
+      context: context,
+      position: RelativeRect.fromLTRB(
+        offset.dx,
+        offset.dy + size.height,
+        offset.dx + size.width,
+        offset.dy,
+      ),
+      items: <PopupMenuEntry<String>>[
+        const PopupMenuItem<String>(
+          value: 'edit',
+          child: Text('Edit'),
+        ),
+        const PopupMenuItem<String>(
+          value: 'delete',
+          child: Text('Delete'),
+        ),
+      ],
+      elevation: 8.0,
+    ).then((String? value) {
+      if (value == 'delete') {
+        onDeleteItem(todo);
+      } else if (value == 'edit') {
+        onEditItem(todo);
+      }
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.only(left: 16, right: 16, bottom: 20),
       child: ListTile(
+        onLongPress: () {
+          showPopupMenu(context);
+        },
         onTap: () {
           onToDoChanged(todo);
         },
@@ -42,24 +81,11 @@ class TodoItem extends StatelessWidget {
             decoration: todo.completed ? TextDecoration.lineThrough : null,
           ),
         ),
-        trailing: PopupMenuButton<String>(
+        trailing: IconButton(
+          key: actionKey,
           icon: const Icon(Icons.more_vert),
-          itemBuilder: (BuildContext context) => [
-            const PopupMenuItem<String>(
-              value: 'edit',
-              child: Text('Edit'),
-            ),
-            const PopupMenuItem<String>(
-              value: 'delete',
-              child: Text('Delete'),
-            ),
-          ],
-          onSelected: (String value) {
-            if (value == 'delete') {
-              onDeleteItem(todo);
-            } else if (value == 'edit') {
-              onEditItem(todo);
-            }
+          onPressed: () {
+            showPopupMenu(context);
           },
         ),
       ),

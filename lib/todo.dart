@@ -15,17 +15,18 @@ class ToDo {
     return [
       ToDo(
         id: '1',
-        todoText: 'Press on a todo item to check it off and vice versa',
+        todoText: 'Tap on a todo item to check it off and vice versa',
         completed: false,
       ),
       ToDo(
         id: '2',
-        todoText: 'Tap on the three dots to edit or delete a todo item',
+        todoText:
+            'Tap on the three dots or long press on the item to edit or delete it',
         completed: false,
       ),
       ToDo(
         id: '3',
-        todoText: 'Tap on a todo item to check it off',
+        todoText: 'Buy milk',
         completed: true,
       ),
       ToDo(
