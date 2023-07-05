@@ -1,16 +1,14 @@
-# todo_app
+# ToDo-App
 
-A new Flutter project.
+An app for tracking your to-do's! 
 
-## Getting Started
+## Description
 
-This project is a starting point for a Flutter application.
+This project applies CRUD programming functionality. 
 
-A few resources to get you started if this is your first Flutter project:
+It has 'edit', 'delete', 'undo' (using snackbar), and 'add'. And the app now saves its current list.
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## Future features
+1. Add other lists 
+2. Dark mode
+3. Google sign-in for multi-device access
