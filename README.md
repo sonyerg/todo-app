@@ -1,6 +1,6 @@
 # ToDo-App
 
-An app for tracking your to-do's! 
+A flutter app for tracking your to-do's! 
 
 ## Description
 
