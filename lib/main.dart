@@ -16,7 +16,6 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        useMaterial3: true,
         appBarTheme: const AppBarTheme(
           color: Color.fromARGB(255, 236, 236, 236),
           elevation: 0,
@@ -37,7 +36,7 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  List<ToDo> todosList = [];
+  List<ToDo> todosList = ToDo.todoList();
 
   @override
   void initState() {
@@ -60,8 +59,7 @@ class _MyHomePageState extends State<MyHomePage> {
         todosList = encodedTodos.map((e) => ToDo.fromJson(e)).toList();
       });
     } else {
-      todosList =
-          ToDo.todoList(); // Load the initial list if no saved list is found
+      todosList = ToDo.todoList();
     }
   }
 

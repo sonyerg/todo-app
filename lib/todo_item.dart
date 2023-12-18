@@ -3,17 +3,17 @@ import 'package:todo_app/todo.dart';
 
 class TodoItem extends StatelessWidget {
   final ToDo todo;
-  final onToDoChanged;
-  final onDeleteItem;
-  final onEditItem;
-  final addToDo;
+  final void Function(ToDo) onToDoChanged;
+  final void Function(ToDo) onDeleteItem;
+  final void Function(ToDo) onEditItem;
+  final void Function()? addToDo;
 
   TodoItem({
     super.key,
     required this.todo,
-    this.onToDoChanged,
-    this.onDeleteItem,
-    this.onEditItem,
+    required this.onToDoChanged,
+    required this.onDeleteItem,
+    required this.onEditItem,
     this.addToDo,
   });
 
@@ -44,13 +44,15 @@ class TodoItem extends StatelessWidget {
         ),
       ],
       elevation: 8.0,
-    ).then((String? value) {
-      if (value == 'delete') {
-        onDeleteItem(todo);
-      } else if (value == 'edit') {
-        onEditItem(todo);
-      }
-    });
+    ).then(
+      (String? value) {
+        if (value == 'delete') {
+          onDeleteItem(todo);
+        } else if (value == 'edit') {
+          onEditItem(todo);
+        }
+      },
+    );
   }
 
   @override
